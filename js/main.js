@@ -1,24 +1,35 @@
 "use strict"
 
+const list = document.createElement('ul');
+list.classList.add('list');
 
-const advert = document.querySelector('.ads');
-advert.remove();
 
-const items = document.querySelectorAll('.item');
-items[3].after(items[0]);
+const fillTheList = () => {
+    const userString = prompt('Введите что то');
 
-const itemThree = document.querySelector('.item_three .props__list');
-const itemFive = document.querySelector('.item_five .props__list');
-const cloneFive = itemFive.cloneNode(true);
-const cloneThree = itemThree.cloneNode(true);
-itemThree.replaceWith(cloneFive);
-itemFive.replaceWith(cloneThree)
+    if(userString === null || userString === 'exit') {
+        return list;
+    }
 
-const itemsTwo = document.querySelector('.item_two .props__list');
-const itemSix= document.querySelectorAll('.item_six .props__item_two');
-itemsTwo.after(itemSix[0], itemSix[1]);
+    if(userString === 'clear') {
+        return list.innerHTML = '';
+    }
+    if(userString === 'del') {
+        return list.lastChild.remove();
+    }
+    
+    if (userString.length > 0) {
+        const item = document.createElement('li');
+        item.append(userString);
+        list.append(item);
+        document.body.insertAdjacentElement('beforebegin', list);
+    }
+    
+    return fillTheList();
+}
 
-const itemTwo = document.querySelectorAll(' .item_two .props__item')
-const itemFour = document.querySelectorAll(' .item_four .props__item')
-itemFour[2].after(itemTwo[3]);
+fillTheList();
+
+
+
 
