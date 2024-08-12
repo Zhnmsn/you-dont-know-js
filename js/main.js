@@ -14,6 +14,7 @@ const fillTheList = () => {
     if(userString === 'clear') {
         return list.innerHTML = '';
     }
+
     if(userString === 'del') {
         return list.lastChild.remove();
     }
